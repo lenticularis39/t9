@@ -1,0 +1,43 @@
+
+[TIMESTAMP] 1634736851 Wed Oct 20 15:34:11 2021
+[BUILDTIME] 1000 (9)
+[SIZE] 326.10 MB, 56412 files
+
+[DEP] 00-dirtree
+[DEP] bash
+[DEP] bc
+[DEP] binutils
+[DEP] bison
+[DEP] coreutils
+[DEP] cpio
+[DEP] diffutils
+[DEP] disktype
+[DEP] e2fsprogs
+[DEP] embutils
+[DEP] findutils
+[DEP] flex
+[DEP] gawk
+[DEP] grep
+[DEP] kmod
+[DEP] libelf
+[DEP] linux-firmware
+[DEP] linux-header
+[DEP] lvm2
+[DEP] m4
+[DEP] make
+[DEP] mdadm
+[DEP] minised
+[DEP] mkinitrd
+[DEP] ncurses
+[DEP] net-tools
+[DEP] patch
+[DEP] pdksh
+[DEP] perl
+[DEP] pkgconfig
+[DEP] readline
+[DEP] sed
+[DEP] sysfiles
+[DEP] tar
+[DEP] udev
+[DEP] util-linux
+[DEP] zlib
