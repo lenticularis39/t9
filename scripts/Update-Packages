@@ -1,0 +1,8 @@
+#!/bin/sh
+[ ! -d package ] && mkdir package
+
+[ ! -e package/.svn ] && svn co https://svn.exactcode.de/t2/trunk/package package/
+
+cd package/
+svn up
+cd ..
