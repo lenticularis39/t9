@@ -1,6 +1,6 @@
-package/
-config/
-download/
-build/
-src/
-src.*/
+/package/
+/config/
+/download
+/build/
+/src/
+/src.*/
