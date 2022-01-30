@@ -39,3 +39,15 @@ t9 target replaces many of standard GNU utilities with either their alternatives
 from Plan 9 or more modern replacements written in a different language than C.
 To avoid breaking GNU compatibility, GNU versions of the replaced utilities are
 available with the `g` prefix.
+
+## History
+
+A predecessor of T9 is the lenticularis39/t2-ps3 repo, which was created to host
+a custom target of T2 SDE that would build correctly for the PS3. Fortunately
+that is no longer needed, since the quality of T2 SDE has improved significantly
+thanks to community efforts.
+
+There are still some areas which would benefit from improvement, some of these
+can be implemented in the main repository, but some of them can't, either
+because they require testing or because they bring major changes. For this kind
+of experiments T9 was created.
