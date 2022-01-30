@@ -14,6 +14,7 @@ Among the ideas for experiments are:
 - smarter optimization on various platforms (e.g. IA-64)
 - better package build speed
 - more flexible and optimized build system
+- possibly partly static builds
 - and more
 
 **T9 is for experimenting only, it's not meant to be used as a daily driver. If
