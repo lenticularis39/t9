@@ -1,0 +1,65 @@
+# Internal list of packages
+_awk_pkglist=''
+
+pkglistread() {
+	# Clear package list
+	_awk_pkglist=''
+
+	# Parse file using awk and save results to corresponding shell
+	# variables
+	IFS=""
+	eval $(awk -f - $1 <<-'EOF'
+		function name_to_id(name) {
+			# Convert name string into a shell-compatible identifier
+			result = ""
+			split(name, name_chars, "")
+
+			for (ch in name_chars) {
+				if (name_chars[ch] == "+") {
+					result = result "_plus_"
+				} else if (name_chars[ch] == "-") {
+					result = result "_minus_"
+				} else {
+					result = result name_chars[ch]
+				}
+			}
+
+			return result
+		}
+
+		function set_pkg_field(pkg, field, value) {
+			print "_awk_pkg_", pkg, "_", field, "='", value, "'"
+		}
+
+		BEGIN {
+			# For printing shell commands
+			OFS = ""
+		}
+
+		{
+			# Load single word fields
+			status = $1
+			stages = $2
+			priority = $3
+			repository = $4
+			name = $5
+			ver = $6
+			extraver = $7
+
+			# Add package to list and generate its ID
+			print "var_append _awk_pkglist ' ' ", name
+			id = name_to_id(name)
+
+			# Set package fields
+			set_pkg_field(id, "status", status)
+			set_pkg_field(id, "stages", stages)
+			set_pkg_field(id, "priority", priority)
+			set_pkg_field(id, "repository", repository)
+			set_pkg_field(id, "name", name)
+			set_pkg_field(id, "ver", ver)
+			set_pkg_field(id, "extraver", extraver)
+		}
+	EOF
+	)
+	unset IFS
+}
