@@ -1,20 +1,29 @@
 # Internal list of packages
 _awk_pkglist=''
 
-pkglistread() {
-	# Clear package list
-	_awk_pkglist=''
+# Find best awk implementation
+if [ -z "$AWK" ]; then
+	if which mawk >/dev/null; then
+		AWK=mawk
+	elif which hawk >/dev/null; then
+		AWK=gawk
+	elif which goawk >/dev/null; then
+		AWK=goawk
+	else
+		AWK=awk
+	fi
+fi
 
+pkglistread() {
 	# Parse file using awk and save results to corresponding shell
 	# variables
 	IFS=""
-	eval $(awk -f - $1 <<-'EOF'
+	eval $($AWK -f - $1 <<-'EOF'
 		function name_to_id(name) {
 			# Convert name string into a shell-compatible identifier
 			result = ""
-			split(name, name_chars, "")
 
-			for (ch in name_chars) {
+			for (ch = 1; ch <= split(name, name_chars, ""); ch++) {
 				if (name_chars[ch] == "+") {
 					result = result "_plus_"
 				} else if (name_chars[ch] == "-") {
@@ -32,8 +41,25 @@ pkglistread() {
 		}
 
 		BEGIN {
+			# Initialize package list
+			split("", pkglist);
+			pkglist_n = 0;
+
 			# For printing shell commands
 			OFS = ""
+		}
+
+		END {
+			# Write package list
+			ORS=""
+			print "_awk_pkglist='"
+			ORS=" "
+			for (pkg = 1; pkg < pkglist_n; pkg++) {
+				print pkglist[pkg]
+			}
+			ORS=""
+			print "'"
+			ORS="\n"
 		}
 
 		{
@@ -47,7 +73,7 @@ pkglistread() {
 			extraver = $7
 
 			# Add package to list and generate its ID
-			print "var_append _awk_pkglist ' ' ", name
+			pkglist[pkglist_n++] = name
 			id = name_to_id(name)
 
 			# Set package fields
