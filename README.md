@@ -1,6 +1,6 @@
 Note: Much, if not all of what is described below is yet to be implemented.
 
-# T9 distrubtion build system
+# T9 distribution build system
 
 T9 is an experimental software distribution build kit based upon T2 SDE
 (https://t2sde.org) and inspired by Plan 9 philosophy. Some of the features
@@ -9,6 +9,8 @@ in the future.
 
 Among the ideas for experiments are:
 - replacing complex software with simpler equivalents
+- being closer to POSIX, i.e. not requiring GNU extensions where not absolutely
+necessary
 - reducing the amount of C code by replacing it with code in safer languages
 (Go, Rust)
 - smarter optimization on various platforms (e.g. IA-64)
