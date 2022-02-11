@@ -15,7 +15,7 @@ necessary
 (Go, Rust)
 - smarter optimization on various platforms (e.g. IA-64)
 - better package build speed
-- more flexible and optimized build system
+- more flexible and optimized build system, more cross compiling (Perl, Python)
 - possibly partly static builds
 - and more
 
