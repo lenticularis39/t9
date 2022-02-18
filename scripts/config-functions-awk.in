@@ -65,7 +65,7 @@ pkglistread() {
 			set_list("_awk_pkglist", pkglist, 1, pkglist_n - 1)
 		}
 
-		{
+		! /.*'.*/ {
 			# Load single word fields
 			status = $1
 			stages = $2
